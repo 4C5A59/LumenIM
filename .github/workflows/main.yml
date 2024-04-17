@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    tags: v*
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-2019
+            platform: 'win'
+    runs-on: ${{ matrix.os }}
+
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+
+
+      - name: Install
+        run: |
+          yarn install
+
+
+      - name: Build
+        run: |
+          yarn build
+
+      - name: Electron-Win
+        if: matrix.platform == 'win'
+        run: |        
+          yarn electron:build
+          
+      - name: github actions
+        uses: actions/upload-artifact@v3
+        with:
+          name: LumenIM*.*
+          path: out/LumenIM*.*
+          if-no-files-found: error
