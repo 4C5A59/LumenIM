@@ -36,7 +36,7 @@ jobs:
       - name: Electron-Win
         if: matrix.platform == 'win'
         run: |        
-          yarn electron:build
+          yarn electron:build --${{ matrix.platform }} -p never
           
       - name: github actions
         uses: actions/upload-artifact@v3
