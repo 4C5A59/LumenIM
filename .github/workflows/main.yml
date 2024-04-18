@@ -41,6 +41,6 @@ jobs:
       - name: github actions
         uses: actions/upload-artifact@v3
         with:
-          name: LumenIM*.*
-          path: dist_electron\LumenIM*.*
+          name: LumenIM Setup 0.0.0.exe.blockmap
+          path: dist_electron\LumenIM Setup 0.0.0.exe.blockmap
           if-no-files-found: error
