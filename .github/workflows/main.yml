@@ -42,5 +42,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: LumenIM*.*
-          path: out/LumenIM*.*
+          path: dist_electron\LumenIM*.*
           if-no-files-found: error
