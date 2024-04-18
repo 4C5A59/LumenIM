@@ -15,13 +15,14 @@ jobs:
 
 
     steps:
-
+      - name: Set git config
+        run: |
+          git config --global core.autocrlf false
+          
       - name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: recursive
-
-
 
       - name: Install
         run: |
@@ -35,7 +36,7 @@ jobs:
       - name: Electron-Win
         if: matrix.platform == 'win'
         run: |        
-          yarn electron:build
+          yarn run electron-builder --${{ matrix.platform }} -p never | sed 's/identityName=.*$//'
           
       - name: github actions
         uses: actions/upload-artifact@v3
